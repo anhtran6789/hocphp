@@ -1,12 +1,12 @@
 <?php
 include('db.php');
-$error="";
+$error="";//Intent: Tức là em thêm khoảng trắng giữa dầu "=" nhé tương tự với dòng dưới
 $id="0";
 $username="";
 $email="";
 $password="";
 
-if(isset($_POST['btnsave']))
+if(isset($_POST['btnsave']))// Nên dùng if ($_SERVER['REQUEST_METHOD'] === 'POST') { để xem có phải gửi bằng METHOD Post hay không
 {
 	$username=$_POST['txt_username'];
 	$email=$_POST['txt_email'];
@@ -44,13 +44,13 @@ if(isset($_GET['edited']))
 	$sql="select * from user where id='{$_GET['id']}'";
 	$query=mysql_query($sql);
 	$row=mysql_fetch_object($query);
-	$id=$row->id;
-	$username=$row->username;
-	$email=$row->email;
-	$password=$row->passwd;
+	$id=$row->id;// Phần này em ko cần, mà trong phần form em dùng $row->id thì hợp lý hơn, vì sau này dùng mô hình MVC thì hiển thị cái gì, ở đâu sẽ ở lớp VIEW
+	$username=$row->username;// Tương tự ở trên
+	$email=$row->email; // Tương tự ở trên
+	$password=$row->passwd;// Tương tự ở trên
 	
 }
-if(isset($_GET['deleted']))
+if(isset($_GET['deleted'])) // Em thử tìm hiểu cách gửi bằng Request Delete
 {
 	$sql="delete from user where id='{$_GET['id']}'";
 	$query=mysql_query($sql);
@@ -78,7 +78,7 @@ if(isset($_GET['deleted']))
 		</tr>
 		<tr>
 			<td>Password</td>	
-			<td><input type="text" name="txt_password"></td>
+			<td><input type="text" name="txt_password"></td><!-- Password không nên show ra vì thế type = password -->
 		</tr>
 		<td></td>
 		<td>
